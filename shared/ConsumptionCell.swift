@@ -12,12 +12,16 @@ struct ConsumptionCell: View {
 
     var body: some View {
         if let state = state {
-            VStack(alignment: .center) {
-                Text("Verbrauch")
-                    .font(.caption2)
-                Text(state.consumption.kwString)
-                    .font(.largeTitle)
-                    .foregroundColor(state.consumptionColor)
+            Section("Verbrauch") {
+                HStack {
+                    Spacer()
+                    VStack(alignment: .center) {
+                        Text(state.consumption.kwString)
+                            .font(.largeTitle)
+                            .foregroundColor(state.consumptionColor)
+                    }
+                    Spacer()
+                }
             }
         }
     }

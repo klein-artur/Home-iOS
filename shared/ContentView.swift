@@ -12,26 +12,30 @@ struct ContentView: View {
     @ObservedObject var viewModel = MainViewModel()
 
     var body: some View {
-        List {
-            PvCell(state: viewModel.data)
-                .padding(.vertical, 8.0)
-            ConsumptionCell(state: viewModel.data)
-                .padding(.vertical, 8.0)
-                .frame(maxWidth: .infinity)
-            BatteryCell(state: viewModel.data)
-                .padding(.vertical, 8.0)
+        NavigationView {
+            List {
+                NextHoursCell(nextHours: viewModel.nextHours)
+                PvCell(state: viewModel.state)
+                ConsumptionCell(state: viewModel.state)
+                BatteryCell(state: viewModel.state)
+                IncomeCell(income: viewModel.income)
+                DeviceLogSection(deviceLog: viewModel.deviceLog)
+            }
+            .refreshable {
+                await self.viewModel.loadState()
+                await self.viewModel.loadNextHours()
+                await self.viewModel.loadDeviceLog()
+                await self.viewModel.loadIncome()
+            }
+            .onAppear {
+                viewModel.startViewModelObservation()
+            }
+#if os(watchOS)
+            .navigationTitle {
+                Text(viewModel.title)
+            }
+#endif
         }
-        .refreshable {
-            await self.viewModel.loadData()
-        }
-        .onAppear {
-            viewModel.startViewModelObservation()
-        }
-        #if os(watchOS)
-        .navigationTitle {
-            Text(viewModel.title)
-        }
-        #endif
     }
 }
 

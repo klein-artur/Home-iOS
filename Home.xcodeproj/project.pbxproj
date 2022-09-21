@@ -40,6 +40,12 @@
 		FE26FEA528DA349000851216 /* PvCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE26FEA028DA349000851216 /* PvCell.swift */; };
 		FE26FEA628DA349000851216 /* PvCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE26FEA028DA349000851216 /* PvCell.swift */; };
 		FEC6FC9D28DB17BE003EAAEA /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE26FE9B28DA346500851216 /* ContentView.swift */; };
+		FEFA82D228DB24BC000945DE /* NextHoursCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEFA82D128DB24BC000945DE /* NextHoursCell.swift */; };
+		FEFA82D328DB24BC000945DE /* NextHoursCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEFA82D128DB24BC000945DE /* NextHoursCell.swift */; };
+		FEFA82D528DB322B000945DE /* DeviceLogSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEFA82D428DB322B000945DE /* DeviceLogSection.swift */; };
+		FEFA82D628DB322B000945DE /* DeviceLogSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEFA82D428DB322B000945DE /* DeviceLogSection.swift */; };
+		FEFA82D828DB3DE2000945DE /* IncomeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEFA82D728DB3DE2000945DE /* IncomeCell.swift */; };
+		FEFA82D928DB3DE2000945DE /* IncomeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEFA82D728DB3DE2000945DE /* IncomeCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -114,6 +120,9 @@
 		FE26FE9E28DA349000851216 /* ConsumptionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConsumptionCell.swift; sourceTree = "<group>"; };
 		FE26FE9F28DA349000851216 /* BatteryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BatteryCell.swift; sourceTree = "<group>"; };
 		FE26FEA028DA349000851216 /* PvCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PvCell.swift; sourceTree = "<group>"; };
+		FEFA82D128DB24BC000945DE /* NextHoursCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextHoursCell.swift; sourceTree = "<group>"; };
+		FEFA82D428DB322B000945DE /* DeviceLogSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceLogSection.swift; sourceTree = "<group>"; };
+		FEFA82D728DB3DE2000945DE /* IncomeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncomeCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -229,6 +238,9 @@
 				FE26FE8528DA337900851216 /* DoOnDataLoaded.swift */,
 				FE26FE8428DA337900851216 /* MainViewModel.swift */,
 				FE26FE7D28DA32DD00851216 /* Extensions */,
+				FEFA82D128DB24BC000945DE /* NextHoursCell.swift */,
+				FEFA82D428DB322B000945DE /* DeviceLogSection.swift */,
+				FEFA82D728DB3DE2000945DE /* IncomeCell.swift */,
 			);
 			path = shared;
 			sourceTree = "<group>";
@@ -367,8 +379,11 @@
 				FE26FE9A28DA341C00851216 /* DoOnDataLoadedImpl.swift in Sources */,
 				F47CB8D3295CB51200A47BA8 /* Constants.swift in Sources */,
 				FEC6FC9D28DB17BE003EAAEA /* ContentView.swift in Sources */,
+				FEFA82D228DB24BC000945DE /* NextHoursCell.swift in Sources */,
 				FE26FE8928DA337900851216 /* DataRepository.swift in Sources */,
 				FE26FEA128DA349000851216 /* ConsumptionCell.swift in Sources */,
+				FEFA82D528DB322B000945DE /* DeviceLogSection.swift in Sources */,
+				FEFA82D828DB3DE2000945DE /* IncomeCell.swift in Sources */,
 				FE26FEA328DA349000851216 /* BatteryCell.swift in Sources */,
 				FE26FE4128D9FC8700851216 /* HomeApp.swift in Sources */,
 				FE26FEA528DA349000851216 /* PvCell.swift in Sources */,
@@ -386,9 +401,11 @@
 				FE26FEA428DA349000851216 /* BatteryCell.swift in Sources */,
 				FE26FE6028D9FC8900851216 /* NotificationController.swift in Sources */,
 				FE26FE9D28DA346500851216 /* ContentView.swift in Sources */,
+				FEFA82D928DB3DE2000945DE /* IncomeCell.swift in Sources */,
 				FE26FE7C28DA328B00851216 /* ExtensionDelegate.swift in Sources */,
 				F47CB8D4295CB51200A47BA8 /* Constants.swift in Sources */,
 				FE26FE9428DA33B500851216 /* DoOnDataLoadedImpl.swift in Sources */,
+				FEFA82D628DB322B000945DE /* DeviceLogSection.swift in Sources */,
 				FE26FE9828DA33EA00851216 /* ComplicationController.swift in Sources */,
 				FE26FE8028DA332600851216 /* Color+Extensions.swift in Sources */,
 				FE26FE8C28DA337900851216 /* MainViewModel.swift in Sources */,
@@ -396,6 +413,7 @@
 				FE26FE8A28DA337900851216 /* DataRepository.swift in Sources */,
 				FE26FE6228D9FC8900851216 /* NotificationView.swift in Sources */,
 				FE26FEA628DA349000851216 /* PvCell.swift in Sources */,
+				FEFA82D328DB24BC000945DE /* NextHoursCell.swift in Sources */,
 				FE26FEA228DA349000851216 /* ConsumptionCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

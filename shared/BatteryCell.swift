@@ -12,11 +12,9 @@ struct BatteryCell: View {
 
     var body: some View {
         if let state = state {
-            VStack(alignment: .center) {
-                Text("Batterie")
-                    .font(.caption2)
-
-                Gauge(value: Double(state.batteryState), in: 0.0...100.0) {
+            Section("Batterie") {
+                VStack(alignment: .center) {
+                    Gauge(value: Double(state.batteryState), in: 0.0...100.0) {
                     } currentValueLabel: {
                         Text("\(state.batteryState)")
                             .foregroundColor(Color.green)
@@ -27,19 +25,20 @@ struct BatteryCell: View {
                         Text("\(100)")
                             .foregroundColor(Color.green)
                     }
-                #if os(watchOS)
+#if os(watchOS)
                     .gaugeStyle(
                         CircularGaugeStyle(tint: Gradient(colors: [.green, .yellow, .orange, .red].reversed()))
                     )
-                #endif
+#endif
+                    .padding(.top, 8.0)
+                    HStack {
+                        Text(state.batteryCharge >= 0 ? "Lädt:" : "Entlädt:")
+                        Spacer()
+                        Text(abs(state.batteryCharge).kwString)
+                            .foregroundColor(state.batteryCharge >= 0 ? .green : .red)
+                    }
 
-                HStack {
-                    Text(state.batteryCharge >= 0 ? "Lädt:" : "Entlädt:")
-                    Spacer()
-                    Text(abs(state.batteryCharge).kwString)
-                        .foregroundColor(state.batteryCharge >= 0 ? .green : .red)
                 }
-
             }
         }
     }

@@ -14,9 +14,7 @@ struct HomeApp: App {
 
     @SceneBuilder var body: some Scene {
         WindowGroup {
-            NavigationView {
-                ContentView()
-            }
+            ContentView()
         }
 
         WKNotificationScene(controller: NotificationController.self, category: "myCategory")

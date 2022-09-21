@@ -20,11 +20,38 @@ struct PVState: Codable {
     let timestamp: Int
 }
 
+struct PVNextHour: Codable {
+    let consumption: Float
+    let timestamp: Int
+    let maxValue: Float
+    let excess: Float
+    let state: Int
+    let percent: Float
+}
+
+struct PVDeviceLog: Codable {
+    let identifier: String
+    let isOn: Bool
+    let lastChange: Int
+    let name: String
+}
+
+struct PVIncome: Codable {
+    let today: Float
+    let yesterday: Float
+}
+
 class DataRepository: NSObject {
 
-    static let stateURL = "\(SERVER_ADRESS)/state.php"
+    static let stateUrl = "\(SERVER_ADRESS)/state.php"
+    static let incomeUrl = "\(SERVER_ADRESS)/income.php"
+    static let nextHoursUrl = "\(SERVER_ADRESS)/nextHours.php"
+    static let deviceLogUrl = "\(SERVER_ADRESS)/deviceLog.php"
 
     static let LAST_DATA_KEY = "LAST_DATA_KEY"
+    static let LAST_HOURS_KEY = "LAST_HOURS_KEY"
+    static let LAST_DEVICELOG_KEY = "LAST_DEVICELOG_KEY"
+    static let LAST_INCOME_KEY = "LAST_INCOME_KEY"
 
     static let shared = DataRepository()
 
@@ -39,11 +66,30 @@ class DataRepository: NSObject {
         return try? JSONDecoder().decode(PVState.self, from: data)
     }
 
-    func getStatus() async throws -> PVState? {
-        if let url = URL(string: Self.stateURL) {
-            let (data, _) = try await URLSession.shared.data(from: url) // (try! JSONEncoder().encode(PVState(gridOutput: -0.4055, batteryCharge: 3.978, pvInput: 6.005, batteryState: 66, consumption: 2.4325, pvSystemOutput: 2.027, timestamp: 1660632147)), nil as Any?)
+    var lastHours: [PVNextHour] {
+        guard let data = defaults.data(forKey: Self.LAST_HOURS_KEY) else {
+            return []
+        }
+        return (try? JSONDecoder().decode([PVNextHour].self, from: data)) ?? []
+    }
 
-            print(String(data: data, encoding: .utf8))
+    var lastDeviceLog: [PVDeviceLog] {
+        guard let data = defaults.data(forKey: Self.LAST_DEVICELOG_KEY) else {
+            return []
+        }
+        return (try? JSONDecoder().decode([PVDeviceLog].self, from: data)) ?? []
+    }
+
+    var lastIncome: PVIncome? {
+        guard let data = defaults.data(forKey: Self.LAST_INCOME_KEY) else {
+            return nil
+        }
+        return try? JSONDecoder().decode(PVIncome.self, from: data)
+    }
+
+    func getStatus() async throws -> PVState? {
+        if let url = URL(string: Self.stateUrl) {
+            let (data, _) = try await URLSession.shared.data(from: url) // (try! JSONEncoder().encode(PVState(gridOutput: -0.4055, batteryCharge: 3.978, pvInput: 6.005, batteryState: 66, consumption: 2.4325, pvSystemOutput: 2.027, timestamp: 1660632147)), nil as Any?)
 
             do {
                 let result = try JSONDecoder().decode(PVState.self, from: data)
@@ -62,6 +108,66 @@ class DataRepository: NSObject {
             return nil
         }
     }
+
+    func getIncome() async throws -> PVIncome? {
+        if let url = URL(string: Self.incomeUrl) {
+            let (data, _) = try await URLSession.shared.data(from: url) // (try! JSONEncoder().encode(PVState(gridOutput: -0.4055, batteryCharge: 3.978, pvInput: 6.005, batteryState: 66, consumption: 2.4325, pvSystemOutput: 2.027, timestamp: 1660632147)), nil as Any?)
+
+            do {
+                let result = try JSONDecoder().decode(PVIncome.self, from: data)
+                defaults.set(data, forKey: Self.LAST_INCOME_KEY)
+                defaults.synchronize()
+
+                return result
+            } catch {
+                print("Error on server side:")
+                print(error)
+                return lastIncome
+            }
+        } else {
+            return nil
+        }
+    }
+
+    func getNextHours() async throws -> [PVNextHour] {
+        if let url = URL(string: Self.nextHoursUrl) {
+            let (data, _) = try await URLSession.shared.data(from: url) // (try! JSONEncoder().encode(PVState(gridOutput: -0.4055, batteryCharge: 3.978, pvInput: 6.005, batteryState: 66, consumption: 2.4325, pvSystemOutput: 2.027, timestamp: 1660632147)), nil as Any?)
+
+            do {
+                let result = try JSONDecoder().decode([PVNextHour].self, from: data)
+                defaults.set(data, forKey: Self.LAST_HOURS_KEY)
+                defaults.synchronize()
+
+                return result
+            } catch {
+                print("Error on server side:")
+                print(error)
+                return lastHours
+            }
+        } else {
+            return []
+        }
+    }
+
+    func getDeviceLog() async throws -> [PVDeviceLog] {
+        if let url = URL(string: Self.deviceLogUrl) {
+            let (data, _) = try await URLSession.shared.data(from: url) // (try! JSONEncoder().encode(PVState(gridOutput: -0.4055, batteryCharge: 3.978, pvInput: 6.005, batteryState: 66, consumption: 2.4325, pvSystemOutput: 2.027, timestamp: 1660632147)), nil as Any?)
+
+            do {
+                let result = try JSONDecoder().decode([PVDeviceLog].self, from: data)
+                defaults.set(data, forKey: Self.LAST_DEVICELOG_KEY)
+                defaults.synchronize()
+
+                return result
+            } catch {
+                print("Error on server side:")
+                print(error)
+                return lastDeviceLog
+            }
+        } else {
+            return []
+        }
+    }
 }
 
 extension Float {
@@ -77,6 +183,17 @@ extension Float {
         let number = NSNumber(value: self)
         let formattedValue = formatter.string(from: number)!
         return "\(formattedValue) KW"
+    }
+
+    var currencyString: String {
+
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .currency
+        formatter.decimalSeparator = ","
+
+        let number = NSNumber(value: self)
+        return formatter.string(from: number)!
+
     }
 }
 
