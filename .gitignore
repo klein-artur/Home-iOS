@@ -1,4 +1,2 @@
-*.xcuserstate
-xcuserdata/*
-xcuserdatad/*
+Home.xcodeproj/project.xcworkspace/xcuserdata
 shared/Constants.swift
