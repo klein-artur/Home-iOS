@@ -13,7 +13,7 @@ class MainViewModel: ObservableObject {
 
     @Published var state: PVState?
     @Published var nextHours: [PVNextHour] = []
-    @Published var deviceLog: [PVDeviceLog] = []
+    @Published var deviceInfos: [PVDeviceInfo] = []
     @Published var income: PVIncome?
     @Published var title: String = ""
 
@@ -38,8 +38,8 @@ class MainViewModel: ObservableObject {
         }
         Task {
             print("Starting Task 3")
-            await loadDeviceLog()
-            print("Task 2 done")
+            await loadDeviceInfos()
+            print("Task 3 done")
         }
         Task {
             print("Starting Task 4")
@@ -67,9 +67,9 @@ class MainViewModel: ObservableObject {
         }
     }
 
-    func loadDeviceLog() async {
+    func loadDeviceInfos() async {
         do {
-            self.deviceLog = try await self.dataRepository.getDeviceLog()
+            self.deviceInfos = try await self.dataRepository.getDeviceInfos(type: "relay")
         } catch {
             print(error)
         }
@@ -92,7 +92,7 @@ class MainViewModel: ObservableObject {
                 await self?.loadNextHours()
             }
             Task {
-                await self?.loadDeviceLog()
+                await self?.loadDeviceInfos()
             }
             Task {
                 await self?.loadIncome()

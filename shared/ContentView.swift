@@ -19,12 +19,12 @@ struct ContentView: View {
                 ConsumptionCell(state: viewModel.state)
                 BatteryCell(state: viewModel.state)
                 IncomeCell(income: viewModel.income)
-                DeviceLogSection(deviceLog: viewModel.deviceLog)
+                DeviceInfosSection(deviceInfo: viewModel.deviceInfos)
             }
             .refreshable {
                 await self.viewModel.loadState()
                 await self.viewModel.loadNextHours()
-                await self.viewModel.loadDeviceLog()
+                await self.viewModel.loadDeviceInfos()
                 await self.viewModel.loadIncome()
             }
             .onAppear {
