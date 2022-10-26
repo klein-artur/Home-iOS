@@ -20,6 +20,7 @@ struct ContentView: View {
                 BatteryCell(state: viewModel.state)
                 IncomeCell(income: viewModel.income)
                 DeviceInfosSection(deviceInfo: viewModel.deviceInfos)
+                    .environmentObject(viewModel)
             }
             .refreshable {
                 await self.viewModel.loadState()

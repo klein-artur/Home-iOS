@@ -12,36 +12,46 @@ struct DeviceDetailView: View {
     @StateObject var viewModel: DeviceDetailViewModel
     
     var body: some View {
-        ScrollView {
-            VStack(spacing: 12) {
-                Text(viewModel.device.isOn ? "AN" : "AUS")
-                    .foregroundColor(viewModel.device.isOn ? Color.green : Color.red)
-                    .font(.title)
-                HStack {
-                    Text("Verbrauch:")
-                    Spacer()
-                    Text(viewModel.device.consumption?.kwString ?? "")
-                }
-                Divider()
-                    .padding(.bottom, 24)
-                if let logs = viewModel.deviceLog {
-                    ForEach(logs) { log in
-                        VStack {
-                            HStack {
-                                Text(log.formattedTime)
-                                    .font(.headline)
-                                Spacer()
-                                Text(log.isOn ? "AN" : "AUS")
-                                    .foregroundColor(log.isOn ? Color.green : Color.red)
-                            }
-                            Divider()
-                        }
+        ZStack {
+            ScrollView {
+                VStack(spacing: 24 ) {
+                    Text(viewModel.device.isOn ? "AN" : "AUS")
+                        .foregroundColor(viewModel.device.isOn ? Color.green : Color.red)
+                        .font(.title)
+                    HStack {
+                        Text("Verbrauch:")
+                        Spacer()
+                        Text(viewModel.device.consumption?.kwString ?? "")
                     }
-                } else {
-                    ProgressView()
+                    Toggle(isOn: $viewModel.isOn) {
+                        Text("Status:")
+                    }
+                    .disabled(viewModel.loading)
+                    Toggle(isOn: $viewModel.automatic) {
+                        Text("Automatik:")
+                    }
+                    .disabled(viewModel.loading)
+                    Divider()
+                        .padding(.bottom, 24)
+                    if let logs = viewModel.deviceLog {
+                        ForEach(logs) { log in
+                            VStack {
+                                HStack {
+                                    Text(log.formattedTime)
+                                        .font(.headline)
+                                    Spacer()
+                                    Text(log.isOn ? "AN" : "AUS")
+                                        .foregroundColor(log.isOn ? Color.green : Color.red)
+                                }
+                                Divider()
+                            }
+                        }
+                    } else {
+                        ProgressView()
+                    }
                 }
+                .padding(.horizontal, 16)
             }
-            .padding(.horizontal, 16)
         }
         .navigationTitle(viewModel.device.name)
         .navigationBarTitleDisplayMode(.large)
@@ -54,10 +64,7 @@ struct DeviceDetailView: View {
 struct DeviceDetailView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            DeviceDetailView(viewModel: DeviceDetailViewModel(device: PVDeviceInfo(identifier: "Test", isOn: true, lastChange: 1663761222, consumption: 1.1, temperature: nil, name: "Some Testdevice"),
-                                                              dataRepository: DataRepository.shared
-                                                             )
-            )
+            DeviceDetailView(viewModel: DeviceDetailViewModel(device: PVDeviceInfo(identifier: "Test", isOn: true, lastChange: 1663761222, consumption: 1.1, temperature: nil, name: "Some Testdevice", forced: false),dataRepository: DataRepository.shared, mainViewModel: MainViewModel()))
         }
     }
 }

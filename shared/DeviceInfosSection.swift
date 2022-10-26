@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct DeviceInfosSection: View {
+    @EnvironmentObject var mainVieModel: MainViewModel
 
     let deviceInfo: [PVDeviceInfo]
 
@@ -18,7 +19,8 @@ struct DeviceInfosSection: View {
                     DeviceDetailView(
                         viewModel: DeviceDetailViewModel(
                             device: log,
-                            dataRepository: DataRepository.shared
+                            dataRepository: DataRepository.shared,
+                            mainViewModel: mainVieModel
                         )
                     )
                 } label: {
@@ -44,14 +46,15 @@ struct DeviceLogSection_Previews: PreviewProvider {
     static var previews: some View {
         DeviceInfosSection(
             deviceInfo: [
-                PVDeviceInfo(identifier: "Test", isOn: true, lastChange: 1663761222, consumption: 1.1, temperature: nil, name: "Some Testdevice"),
-                PVDeviceInfo(identifier: "Test", isOn: true, lastChange: 1663761222, consumption: 1.1, temperature: nil, name: "Some Testdevice"),
-                PVDeviceInfo(identifier: "Test", isOn: true, lastChange: 1663761222, consumption: 1.1, temperature: nil, name: "Some Testdevice"),
-                PVDeviceInfo(identifier: "Test", isOn: true, lastChange: 1663761222, consumption: 1.1, temperature: nil, name: "Some Testdevice"),
-                PVDeviceInfo(identifier: "Test", isOn: true, lastChange: 1663761222, consumption: 1.1, temperature: nil, name: "Some Testdevice"),
-                PVDeviceInfo(identifier: "Test", isOn: true, lastChange: 1663761222, consumption: 1.1, temperature: nil, name: "Some Testdevice")
+                PVDeviceInfo(identifier: "Test", isOn: true, lastChange: 1663761222, consumption: 1.1, temperature: nil, name: "Some Testdevice", forced: false),
+                PVDeviceInfo(identifier: "Test", isOn: true, lastChange: 1663761222, consumption: 1.1, temperature: nil, name: "Some Testdevice", forced: false),
+                PVDeviceInfo(identifier: "Test", isOn: true, lastChange: 1663761222, consumption: 1.1, temperature: nil, name: "Some Testdevice", forced: false),
+                PVDeviceInfo(identifier: "Test", isOn: true, lastChange: 1663761222, consumption: 1.1, temperature: nil, name: "Some Testdevice", forced: false),
+                PVDeviceInfo(identifier: "Test", isOn: true, lastChange: 1663761222, consumption: 1.1, temperature: nil, name: "Some Testdevice", forced: false),
+                PVDeviceInfo(identifier: "Test", isOn: true, lastChange: 1663761222, consumption: 1.1, temperature: nil, name: "Some Testdevice", forced: false)
             ]
         )
+        .environmentObject(MainViewModel())
     }
 }
 

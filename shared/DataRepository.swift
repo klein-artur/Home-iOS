@@ -43,6 +43,7 @@ struct PVDeviceInfo: Codable {
     let consumption: Float?
     let temperature: Float?
     let name: String
+    let forced: Bool
 }
 
 struct PVIncome: Codable {
@@ -50,13 +51,19 @@ struct PVIncome: Codable {
     let yesterday: Float
 }
 
-class DataRepository: NSObject {
+struct PVSwitchResult: Codable {
+    let result: Bool
+    let output: String?
+}
 
-    static let stateUrl = "\(SERVER_ADRESS)/state.php"
-    static let incomeUrl = "\(SERVER_ADRESS)/income.php"
-    static let nextHoursUrl = "\(SERVER_ADRESS)/nextHours.php"
-    static let deviceLogUrl = "\(SERVER_ADRESS)/deviceLog.php"
-    static let deviceInfosUrl = "\(SERVER_ADRESS)/deviceInfos.php"
+class DataRepository: NSObject {
+    
+    static let stateEndpoint = "state.php"
+    static let incomeEndpoint = "income.php"
+    static let nextHoursEndpoint = "nextHours.php"
+    static let deviceLogEndpoint = "deviceLog.php"
+    static let deviceInfosEndpoint = "deviceInfos.php"
+    static let deviceSwitchEndpoint = "switchDevice.php"
 
     static let LAST_DATA_KEY = "LAST_DATA_KEY"
     static let LAST_HOURS_KEY = "LAST_HOURS_KEY"
@@ -106,9 +113,8 @@ class DataRepository: NSObject {
     }
 
     func getStatus() async throws -> PVState? {
-        if let url = URL(string: Self.stateUrl) {
-            let (data, _) = try await URLSession.shared.data(from: url) // (try! JSONEncoder().encode(PVState(gridOutput: -0.4055, batteryCharge: 3.978, pvInput: 6.005, batteryState: 66, consumption: 2.4325, pvSystemOutput: 2.027, timestamp: 1660632147)), nil as Any?)
-
+        if let request = getRequest(endpoint: Self.stateEndpoint, method: .get) {
+            let (data, _) = try await URLSession.shared.data(for: request)
             do {
                 let result = try JSONDecoder().decode(PVState.self, from: data)
                 defaults.set(data, forKey: Self.LAST_DATA_KEY)
@@ -118,7 +124,7 @@ class DataRepository: NSObject {
 
                 return result
             } catch {
-                print("Error on server side:")
+                print("Error on server side in getStatus:")
                 print(error)
                 return lastStatus
             }
@@ -128,8 +134,8 @@ class DataRepository: NSObject {
     }
 
     func getIncome() async throws -> PVIncome? {
-        if let url = URL(string: Self.incomeUrl) {
-            let (data, _) = try await URLSession.shared.data(from: url) // (try! JSONEncoder().encode(PVState(gridOutput: -0.4055, batteryCharge: 3.978, pvInput: 6.005, batteryState: 66, consumption: 2.4325, pvSystemOutput: 2.027, timestamp: 1660632147)), nil as Any?)
+        if let request = getRequest(endpoint: Self.incomeEndpoint, method: .get) {
+            let (data, _) = try await URLSession.shared.data(for: request)
 
             do {
                 let result = try JSONDecoder().decode(PVIncome.self, from: data)
@@ -138,7 +144,7 @@ class DataRepository: NSObject {
 
                 return result
             } catch {
-                print("Error on server side:")
+                print("Error on server side in getIncome:")
                 print(error)
                 return lastIncome
             }
@@ -148,8 +154,8 @@ class DataRepository: NSObject {
     }
 
     func getNextHours() async throws -> [PVNextHour] {
-        if let url = URL(string: Self.nextHoursUrl) {
-            let (data, _) = try await URLSession.shared.data(from: url) // (try! JSONEncoder().encode(PVState(gridOutput: -0.4055, batteryCharge: 3.978, pvInput: 6.005, batteryState: 66, consumption: 2.4325, pvSystemOutput: 2.027, timestamp: 1660632147)), nil as Any?)
+        if let request = getRequest(endpoint: Self.nextHoursEndpoint, method: .get) {
+            let (data, _) = try await URLSession.shared.data(for: request)
 
             do {
                 let result = try JSONDecoder().decode([PVNextHour].self, from: data)
@@ -158,7 +164,7 @@ class DataRepository: NSObject {
 
                 return result
             } catch {
-                print("Error on server side:")
+                print("Error on server side in getNextHours:")
                 print(error)
                 return lastHours
             }
@@ -168,8 +174,8 @@ class DataRepository: NSObject {
     }
 
     func getDeviceLog(identifier: String) async throws -> [PVDeviceLog] {
-        if let url = URL(string: "\(Self.deviceLogUrl)?identifier=\(identifier.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? "")") {
-            let (data, _) = try await URLSession.shared.data(from: url)
+        if let request = getRequest(endpoint: Self.deviceLogEndpoint, method: .get, params: ["identifier": identifier]) {
+            let (data, _) = try await URLSession.shared.data(for: request)
 
             do {
                 let result = try JSONDecoder().decode([PVDeviceLog].self, from: data)
@@ -178,7 +184,7 @@ class DataRepository: NSObject {
 
                 return result
             } catch {
-                print("Error on server side:")
+                print("Error on server side in getDeviceLog:")
                 print(error)
                 return lastDeviceLog
             }
@@ -188,23 +194,128 @@ class DataRepository: NSObject {
     }
     
     func getDeviceInfos(type: String) async throws -> [PVDeviceInfo] {
-        if let url = URL(string: "\(Self.deviceInfosUrl)?type=\(type)") {
-            let (data, _) = try await URLSession.shared.data(from: url)
+        if let request = getRequest(endpoint: Self.deviceInfosEndpoint, method: .get, params: ["type": type]) {
+            let (data, _) = try await URLSession.shared.data(for: request)
 
             do {
                 let result = try JSONDecoder().decode([PVDeviceInfo].self, from: data)
-                defaults.set(data, forKey: Self.LAST_DEVICEINFOS_KEY)
-                defaults.synchronize()
 
                 return result
             } catch {
-                print("Error on server side:")
+                print("Error on server side in getDeviceInfos:")
                 print(error)
-                return lastDeviceInfos
+                return []
             }
         } else {
             return []
         }
+    }
+    
+    func getDeviceInfo(identifier: String) async throws -> PVDeviceInfo? {
+        if let request = getRequest(endpoint: Self.deviceInfosEndpoint, method: .get, params: ["identifier": identifier]) {
+            let (data, _) = try await URLSession.shared.data(for: request)
+
+            do {
+                let result = try JSONDecoder().decode(PVDeviceInfo.self, from: data)
+
+                return result
+            } catch {
+                print("Error on server side in getDeviceInfo:")
+                print(error)
+                return nil
+            }
+        } else {
+            return nil
+        }
+    }
+    
+    func switchDevice(with identifier: String, on: Bool) async throws -> PVDeviceInfo? {
+        let params = [
+            "identifier": identifier,
+            "type": "switch",
+            "value": on ? "on" : "off"
+        ]
+        if let request = getRequest(endpoint: Self.deviceSwitchEndpoint, method: .post, params: params) {
+            let (data, _) = try await URLSession.shared.data(for: request)
+
+            do {
+                let result = try JSONDecoder().decode(PVSwitchResult.self, from: data)
+                
+                if result.result {
+                    return try await getDeviceInfo(identifier: identifier)
+                } else {
+                    print(result.output)
+                    return nil
+                }
+            } catch {
+                print("Error on server side in getDeviceInfo:")
+                print(error)
+                return nil
+            }
+        } else {
+            return nil
+        }
+    }
+    
+    func switchDeviceMode(with identifier: String, manual: Bool) async throws -> PVDeviceInfo? {
+        let params = [
+            "identifier": identifier,
+            "type": "mode",
+            "value": manual ? "on" : "off"
+        ]
+        if let request = getRequest(endpoint: Self.deviceSwitchEndpoint, method: .post, params: params) {
+            let (data, _) = try await URLSession.shared.data(for: request)
+
+            do {
+                let result = try JSONDecoder().decode(PVSwitchResult.self, from: data)
+                
+                if result.result {
+                    return try await getDeviceInfo(identifier: identifier)
+                } else {
+                    print(result.output)
+                    return nil
+                }
+            } catch {
+                print("Error on server side in getDeviceInfo:")
+                print(error)
+                return nil
+            }
+        } else {
+            return nil
+        }
+    }
+    
+    private func getRequest(endpoint: String, method: Method, params: [String: String] = [:]) -> URLRequest? {
+        
+        guard var url = URL(string: "\(SERVER_ADRESS)/\(endpoint)") else {
+            return nil
+        }
+        
+        if method == .get {
+            url.append(
+                queryItems: params.map({ key, value in
+                    URLQueryItem(name: key, value: value)
+                })
+            )
+        }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = method.rawValue
+        
+        if method == .post {
+            request.httpBody = params.percentEncoded()
+        }
+        
+        let authData = (BASIC_AUTH_USER + ":" + BASIC_AUTH_PASSWORD).data(using: .utf8)!.base64EncodedString()
+        request.addValue("Basic \(authData)", forHTTPHeaderField: "Authorization")
+        
+        return request
+        
+    }
+    
+    enum Method: String {
+        case post = "POST"
+        case get = "GET"
     }
 }
 
@@ -275,4 +386,27 @@ extension PVState {
     var gridPercent: Float {
         abs(gridOutput <= 0 ? gridOutput / consumption : 0.0)
     }
+}
+
+extension Dictionary {
+    func percentEncoded() -> Data? {
+        map { key, value in
+            let escapedKey = "\(key)".addingPercentEncoding(withAllowedCharacters: .urlQueryValueAllowed) ?? ""
+            let escapedValue = "\(value)".addingPercentEncoding(withAllowedCharacters: .urlQueryValueAllowed) ?? ""
+            return escapedKey + "=" + escapedValue
+        }
+        .joined(separator: "&")
+        .data(using: .utf8)
+    }
+}
+
+extension CharacterSet {
+    static let urlQueryValueAllowed: CharacterSet = {
+        let generalDelimitersToEncode = ":#[]@" // does not include "?" or "/" due to RFC 3986 - Section 3.4
+        let subDelimitersToEncode = "!$&'()*+,;="
+        
+        var allowed: CharacterSet = .urlQueryAllowed
+        allowed.remove(charactersIn: "\(generalDelimitersToEncode)\(subDelimitersToEncode)")
+        return allowed
+    }()
 }
