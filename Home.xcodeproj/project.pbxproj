@@ -13,6 +13,8 @@
 		F42A0BC02906B5C10030373A /* DeviceDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42A0BBE2906B5C10030373A /* DeviceDetailView.swift */; };
 		F42A0BC32906B6140030373A /* DeviceDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42A0BC22906B6140030373A /* DeviceDetailViewModel.swift */; };
 		F42A0BC42906B6140030373A /* DeviceDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42A0BC22906B6140030373A /* DeviceDetailViewModel.swift */; };
+		F4B5B97F290A7B2800B74102 /* Concurrency+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B5B97E290A7B2800B74102 /* Concurrency+Extensions.swift */; };
+		F4B5B980290A7B2800B74102 /* Concurrency+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B5B97E290A7B2800B74102 /* Concurrency+Extensions.swift */; };
 		F47CB8D3295CB51200A47BA8 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47CB8D2295CB51200A47BA8 /* Constants.swift */; };
 		F47CB8D4295CB51200A47BA8 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47CB8D2295CB51200A47BA8 /* Constants.swift */; };
 		FE26FE4128D9FC8700851216 /* HomeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE26FE4028D9FC8700851216 /* HomeApp.swift */; };
@@ -100,6 +102,7 @@
 		F42A0BBB2906AD490030373A /* HasTimestamp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HasTimestamp.swift; sourceTree = "<group>"; };
 		F42A0BBE2906B5C10030373A /* DeviceDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceDetailView.swift; sourceTree = "<group>"; };
 		F42A0BC22906B6140030373A /* DeviceDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceDetailViewModel.swift; sourceTree = "<group>"; };
+		F4B5B97E290A7B2800B74102 /* Concurrency+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Concurrency+Extensions.swift"; sourceTree = "<group>"; };
 		F47CB8D2295CB51200A47BA8 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		FE26FE3D28D9FC8700851216 /* Home.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Home.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE26FE4028D9FC8700851216 /* HomeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeApp.swift; sourceTree = "<group>"; };
@@ -241,6 +244,7 @@
 			children = (
 				FE26FE7F28DA332600851216 /* Color+Extensions.swift */,
 				F42A0BBB2906AD490030373A /* HasTimestamp.swift */,
+				F4B5B97E290A7B2800B74102 /* Concurrency+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -400,6 +404,7 @@
 				F47CB8D3295CB51200A47BA8 /* Constants.swift in Sources */,
 				F42A0BC32906B6140030373A /* DeviceDetailViewModel.swift in Sources */,
 				FEC6FC9D28DB17BE003EAAEA /* ContentView.swift in Sources */,
+				F4B5B97F290A7B2800B74102 /* Concurrency+Extensions.swift in Sources */,
 				F42A0BBC2906AD490030373A /* HasTimestamp.swift in Sources */,
 				FEFA82D228DB24BC000945DE /* NextHoursCell.swift in Sources */,
 				FE26FE8928DA337900851216 /* DataRepository.swift in Sources */,
@@ -425,6 +430,7 @@
 				FE26FE6028D9FC8900851216 /* NotificationController.swift in Sources */,
 				FE26FE9D28DA346500851216 /* ContentView.swift in Sources */,
 				FEFA82D928DB3DE2000945DE /* IncomeCell.swift in Sources */,
+				F4B5B980290A7B2800B74102 /* Concurrency+Extensions.swift in Sources */,
 				F42A0BBD2906AD490030373A /* HasTimestamp.swift in Sources */,
 				FE26FE7C28DA328B00851216 /* ExtensionDelegate.swift in Sources */,
 				F47CB8D4295CB51200A47BA8 /* Constants.swift in Sources */,
@@ -574,7 +580,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_ASSET_PATHS = "\"Home WatchKit Extension/Preview Content\"";
 				DEVELOPMENT_TEAM = 3SXRZ8J7UJ;
 				ENABLE_PREVIEWS = YES;
@@ -606,7 +612,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_ASSET_PATHS = "\"Home WatchKit Extension/Preview Content\"";
 				DEVELOPMENT_TEAM = 3SXRZ8J7UJ;
 				ENABLE_PREVIEWS = YES;
@@ -641,7 +647,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = 3SXRZ8J7UJ;
 				GENERATE_INFOPLIST_FILE = YES;
 				IBSC_MODULE = Home_WatchKit_Extension;
@@ -668,7 +674,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = 3SXRZ8J7UJ;
 				GENERATE_INFOPLIST_FILE = YES;
 				IBSC_MODULE = Home_WatchKit_Extension;
@@ -695,6 +701,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 6;
 				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"Home/Preview Content\"";
 				DEVELOPMENT_TEAM = 3SXRZ8J7UJ;
@@ -727,6 +734,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 6;
 				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"Home/Preview Content\"";
 				DEVELOPMENT_TEAM = 3SXRZ8J7UJ;
