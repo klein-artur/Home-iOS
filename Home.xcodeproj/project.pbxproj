@@ -13,8 +13,14 @@
 		F42A0BC02906B5C10030373A /* DeviceDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42A0BBE2906B5C10030373A /* DeviceDetailView.swift */; };
 		F42A0BC32906B6140030373A /* DeviceDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42A0BC22906B6140030373A /* DeviceDetailViewModel.swift */; };
 		F42A0BC42906B6140030373A /* DeviceDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42A0BC22906B6140030373A /* DeviceDetailViewModel.swift */; };
+		F4A3DDC9291D17760026E514 /* EditDevicePrioView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A3DDC8291D17760026E514 /* EditDevicePrioView.swift */; };
+		F4A3DDCA291D17760026E514 /* EditDevicePrioView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A3DDC8291D17760026E514 /* EditDevicePrioView.swift */; };
+		F4A3DDCC291D17D10026E514 /* EditDevicePrioViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A3DDCB291D17D10026E514 /* EditDevicePrioViewModel.swift */; };
+		F4A3DDCD291D17D10026E514 /* EditDevicePrioViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A3DDCB291D17D10026E514 /* EditDevicePrioViewModel.swift */; };
 		F4B5B97F290A7B2800B74102 /* Concurrency+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B5B97E290A7B2800B74102 /* Concurrency+Extensions.swift */; };
 		F4B5B980290A7B2800B74102 /* Concurrency+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B5B97E290A7B2800B74102 /* Concurrency+Extensions.swift */; };
+		F4D64648292115FB0023C4C8 /* ArrayExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D64647292115FB0023C4C8 /* ArrayExtensions.swift */; };
+		F4D64649292115FB0023C4C8 /* ArrayExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D64647292115FB0023C4C8 /* ArrayExtensions.swift */; };
 		F47CB8D3295CB51200A47BA8 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47CB8D2295CB51200A47BA8 /* Constants.swift */; };
 		F47CB8D4295CB51200A47BA8 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47CB8D2295CB51200A47BA8 /* Constants.swift */; };
 		FE26FE4128D9FC8700851216 /* HomeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE26FE4028D9FC8700851216 /* HomeApp.swift */; };
@@ -102,7 +108,10 @@
 		F42A0BBB2906AD490030373A /* HasTimestamp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HasTimestamp.swift; sourceTree = "<group>"; };
 		F42A0BBE2906B5C10030373A /* DeviceDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceDetailView.swift; sourceTree = "<group>"; };
 		F42A0BC22906B6140030373A /* DeviceDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceDetailViewModel.swift; sourceTree = "<group>"; };
+		F4A3DDC8291D17760026E514 /* EditDevicePrioView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditDevicePrioView.swift; sourceTree = "<group>"; };
+		F4A3DDCB291D17D10026E514 /* EditDevicePrioViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditDevicePrioViewModel.swift; sourceTree = "<group>"; };
 		F4B5B97E290A7B2800B74102 /* Concurrency+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Concurrency+Extensions.swift"; sourceTree = "<group>"; };
+		F4D64647292115FB0023C4C8 /* ArrayExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayExtensions.swift; sourceTree = "<group>"; };
 		F47CB8D2295CB51200A47BA8 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		FE26FE3D28D9FC8700851216 /* Home.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Home.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE26FE4028D9FC8700851216 /* HomeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeApp.swift; sourceTree = "<group>"; };
@@ -160,6 +169,8 @@
 			children = (
 				F42A0BBE2906B5C10030373A /* DeviceDetailView.swift */,
 				F42A0BC22906B6140030373A /* DeviceDetailViewModel.swift */,
+				F4A3DDC8291D17760026E514 /* EditDevicePrioView.swift */,
+				F4A3DDCB291D17D10026E514 /* EditDevicePrioViewModel.swift */,
 			);
 			path = DeviceDetail;
 			sourceTree = "<group>";
@@ -245,6 +256,7 @@
 				FE26FE7F28DA332600851216 /* Color+Extensions.swift */,
 				F42A0BBB2906AD490030373A /* HasTimestamp.swift */,
 				F4B5B97E290A7B2800B74102 /* Concurrency+Extensions.swift */,
+				F4D64647292115FB0023C4C8 /* ArrayExtensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -403,11 +415,13 @@
 				FE26FE9A28DA341C00851216 /* DoOnDataLoadedImpl.swift in Sources */,
 				F47CB8D3295CB51200A47BA8 /* Constants.swift in Sources */,
 				F42A0BC32906B6140030373A /* DeviceDetailViewModel.swift in Sources */,
+				F4A3DDC9291D17760026E514 /* EditDevicePrioView.swift in Sources */,
 				FEC6FC9D28DB17BE003EAAEA /* ContentView.swift in Sources */,
 				F4B5B97F290A7B2800B74102 /* Concurrency+Extensions.swift in Sources */,
 				F42A0BBC2906AD490030373A /* HasTimestamp.swift in Sources */,
 				FEFA82D228DB24BC000945DE /* NextHoursCell.swift in Sources */,
 				FE26FE8928DA337900851216 /* DataRepository.swift in Sources */,
+				F4A3DDCC291D17D10026E514 /* EditDevicePrioViewModel.swift in Sources */,
 				FE26FEA128DA349000851216 /* ConsumptionCell.swift in Sources */,
 				FEFA82D528DB322B000945DE /* DeviceInfosSection.swift in Sources */,
 				FEFA82D828DB3DE2000945DE /* IncomeCell.swift in Sources */,
@@ -415,6 +429,8 @@
 				FE26FE4128D9FC8700851216 /* HomeApp.swift in Sources */,
 				FE26FEA528DA349000851216 /* PvCell.swift in Sources */,
 				FE26FE8128DA332D00851216 /* Color+Extensions.swift in Sources */,
+				F4D64648292115FB0023C4C8 /* ArrayExtensions.swift in Sources */,
+				FE26FE8728DA337900851216 /* Constants.swift in Sources */,
 				FE26FE8D28DA337900851216 /* DoOnDataLoaded.swift in Sources */,
 				FE26FE8B28DA337900851216 /* MainViewModel.swift in Sources */,
 				F42A0BBF2906B5C10030373A /* DeviceDetailView.swift in Sources */,
@@ -429,7 +445,9 @@
 				FE26FEA428DA349000851216 /* BatteryCell.swift in Sources */,
 				FE26FE6028D9FC8900851216 /* NotificationController.swift in Sources */,
 				FE26FE9D28DA346500851216 /* ContentView.swift in Sources */,
+				F4A3DDCD291D17D10026E514 /* EditDevicePrioViewModel.swift in Sources */,
 				FEFA82D928DB3DE2000945DE /* IncomeCell.swift in Sources */,
+				F4D64649292115FB0023C4C8 /* ArrayExtensions.swift in Sources */,
 				F4B5B980290A7B2800B74102 /* Concurrency+Extensions.swift in Sources */,
 				F42A0BBD2906AD490030373A /* HasTimestamp.swift in Sources */,
 				FE26FE7C28DA328B00851216 /* ExtensionDelegate.swift in Sources */,
@@ -445,6 +463,7 @@
 				FE26FE8A28DA337900851216 /* DataRepository.swift in Sources */,
 				FE26FE6228D9FC8900851216 /* NotificationView.swift in Sources */,
 				FE26FEA628DA349000851216 /* PvCell.swift in Sources */,
+				F4A3DDCA291D17760026E514 /* EditDevicePrioView.swift in Sources */,
 				FEFA82D328DB24BC000945DE /* NextHoursCell.swift in Sources */,
 				FE26FEA228DA349000851216 /* ConsumptionCell.swift in Sources */,
 			);
@@ -580,7 +599,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 9;
 				DEVELOPMENT_ASSET_PATHS = "\"Home WatchKit Extension/Preview Content\"";
 				DEVELOPMENT_TEAM = 3SXRZ8J7UJ;
 				ENABLE_PREVIEWS = YES;
@@ -595,7 +614,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 2.2;
 				PRODUCT_BUNDLE_IDENTIFIER = de.hellmann.Home.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
 				SDKROOT = watchos;
@@ -612,7 +631,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 9;
 				DEVELOPMENT_ASSET_PATHS = "\"Home WatchKit Extension/Preview Content\"";
 				DEVELOPMENT_TEAM = 3SXRZ8J7UJ;
 				ENABLE_PREVIEWS = YES;
@@ -627,7 +646,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 2.2;
 				PRODUCT_BUNDLE_IDENTIFIER = de.hellmann.Home.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
 				SDKROOT = watchos;
@@ -647,7 +666,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 9;
 				DEVELOPMENT_TEAM = 3SXRZ8J7UJ;
 				GENERATE_INFOPLIST_FILE = YES;
 				IBSC_MODULE = Home_WatchKit_Extension;
@@ -655,7 +674,7 @@
 				INFOPLIST_KEY_CFBundleDisplayName = Home;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = de.hellmann.Home;
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 2.2;
 				PRODUCT_BUNDLE_IDENTIFIER = de.hellmann.Home.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
@@ -674,7 +693,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 9;
 				DEVELOPMENT_TEAM = 3SXRZ8J7UJ;
 				GENERATE_INFOPLIST_FILE = YES;
 				IBSC_MODULE = Home_WatchKit_Extension;
@@ -682,7 +701,7 @@
 				INFOPLIST_KEY_CFBundleDisplayName = Home;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = de.hellmann.Home;
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 2.2;
 				PRODUCT_BUNDLE_IDENTIFIER = de.hellmann.Home.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
@@ -701,6 +720,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 9;
 				CURRENT_PROJECT_VERSION = 6;
 				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"Home/Preview Content\"";
@@ -718,7 +738,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 2.2;
 				PRODUCT_BUNDLE_IDENTIFIER = de.hellmann.Home;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
@@ -734,6 +754,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 9;
 				CURRENT_PROJECT_VERSION = 6;
 				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"Home/Preview Content\"";
@@ -751,7 +772,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 2.2;
 				PRODUCT_BUNDLE_IDENTIFIER = de.hellmann.Home;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;

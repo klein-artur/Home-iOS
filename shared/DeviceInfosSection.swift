@@ -11,6 +11,8 @@ struct DeviceInfosSection: View {
     @EnvironmentObject var mainVieModel: MainViewModel
 
     let deviceInfo: [PVDeviceInfo]
+    
+    @State var openPrioEditMode: Bool = false
 
     var body: some View {
         Section("Geräte") {
@@ -24,37 +26,61 @@ struct DeviceInfosSection: View {
                         )
                     )
                 } label: {
-                    HStack {
-                        VStack(alignment: .leading) {
+                    VStack {
+                        HStack {
                             Text(log.name)
                                 .font(.headline)
                                 .padding(.bottom, 6)
+                            Spacer()
+                            Text(log.isOn ? "AN" : "AUS")
+                                .foregroundColor(log.isOn ? Color.green : Color.red)
+                        }
+                        HStack {
                             Text(log.consumption?.kwString ?? "")
                                 .font(.caption)
+                            Spacer()
+                            Text(log.formattedTime)
+                                .font(.caption)
                         }
-                        Spacer()
-                        Text(log.isOn ? "AN" : "AUS")
-                            .foregroundColor(log.isOn ? Color.green : Color.red)
                     }
                 }
             }
+            
+#if os(iOS)
+            Button{
+                self.openPrioEditMode = true
+            } label: {
+                Text("Prioritäten bearbeiten")
+            }
+            #endif
+        }
+        .sheet(isPresented: self.$openPrioEditMode) {
+            EditDevicePrioView(
+                isShown: self.$openPrioEditMode,
+                editDevicePrioViewModel: EditDevicePrioViewModel(
+                    repo: .shared,
+                    devices: deviceInfo
+                )
+            )
         }
     }
 }
 
 struct DeviceLogSection_Previews: PreviewProvider {
     static var previews: some View {
-        DeviceInfosSection(
-            deviceInfo: [
-                PVDeviceInfo(identifier: "Test", isOn: true, lastChange: 1663761222, consumption: 1.1, temperature: nil, name: "Some Testdevice", forced: false),
-                PVDeviceInfo(identifier: "Test", isOn: true, lastChange: 1663761222, consumption: 1.1, temperature: nil, name: "Some Testdevice", forced: false),
-                PVDeviceInfo(identifier: "Test", isOn: true, lastChange: 1663761222, consumption: 1.1, temperature: nil, name: "Some Testdevice", forced: false),
-                PVDeviceInfo(identifier: "Test", isOn: true, lastChange: 1663761222, consumption: 1.1, temperature: nil, name: "Some Testdevice", forced: false),
-                PVDeviceInfo(identifier: "Test", isOn: true, lastChange: 1663761222, consumption: 1.1, temperature: nil, name: "Some Testdevice", forced: false),
-                PVDeviceInfo(identifier: "Test", isOn: true, lastChange: 1663761222, consumption: 1.1, temperature: nil, name: "Some Testdevice", forced: false)
-            ]
-        )
-        .environmentObject(MainViewModel())
+        List {
+            DeviceInfosSection(
+                deviceInfo: [
+                    PVDeviceInfo(identifier: "Test", isOn: true, lastChange: 1663761222, consumption: 1.1, temperature: nil, name: "Some Testdevice", forced: false, priority: 10, estimatedConsumption: 300),
+                    PVDeviceInfo(identifier: "Test", isOn: true, lastChange: 1663761222, consumption: 1.1, temperature: nil, name: "Some Testdevice", forced: false, priority: 10, estimatedConsumption: 300),
+                    PVDeviceInfo(identifier: "Test", isOn: true, lastChange: 1663761222, consumption: 1.1, temperature: nil, name: "Some Testdevice", forced: false, priority: 10, estimatedConsumption: 300),
+                    PVDeviceInfo(identifier: "Test", isOn: true, lastChange: 1663761222, consumption: 1.1, temperature: nil, name: "Some Testdevice", forced: false, priority: 10, estimatedConsumption: 300),
+                    PVDeviceInfo(identifier: "Test", isOn: true, lastChange: 1663761222, consumption: 1.1, temperature: nil, name: "Some Testdevice", forced: false, priority: 10, estimatedConsumption: 300),
+                    PVDeviceInfo(identifier: "Test", isOn: true, lastChange: 1663761222, consumption: 1.1, temperature: nil, name: "Some Testdevice", forced: false, priority: 10, estimatedConsumption: 300)
+                ]
+            )
+            .environmentObject(MainViewModel())
+        }
     }
 }
 

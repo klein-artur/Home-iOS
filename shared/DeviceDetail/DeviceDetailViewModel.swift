@@ -19,10 +19,20 @@ class DeviceDetailViewModel: ObservableObject {
             self.isOn = device.isOn
             self.automatic = !device.forced
             self.locked = false
+            self.name = device.name
+            self.estimatedConsumption = device.estimatedConsumption
+            
+            self.updatePrioButtonEnabled()
             
             if let index = mainViewModel.deviceInfos.firstIndex(where: { $0.identifier == device.identifier }) {
                 mainViewModel.deviceInfos[index] = device
             }
+        }
+    }
+
+    @Published var selectedPrio: Int {
+        didSet {
+            updatePrioButtonEnabled()
         }
     }
     
@@ -84,6 +94,16 @@ class DeviceDetailViewModel: ObservableObject {
     
     @Published var loading = false
     
+    @Published var prioButtonEnabled = false
+    
+    @Published var name: String
+    
+    @Published var estimatedConsumption: Int
+    
+    private func updatePrioButtonEnabled() {
+        prioButtonEnabled = selectedPrio != device.priority && !loading && device(with: selectedPrio) == nil
+    }
+    
     init (
         device: PVDeviceInfo,
         dataRepository: DataRepository,
@@ -91,9 +111,75 @@ class DeviceDetailViewModel: ObservableObject {
     ) {
         self.device = device
         self.isOn = device.isOn
+        self.name = device.name
         self.automatic = !device.forced
         self.dataRepository = dataRepository
         self.mainViewModel = mainViewModel
+        self.selectedPrio = device.priority!
+        self.estimatedConsumption = device.estimatedConsumption
+    }
+    
+    func device(with prio: Int) -> PVDeviceInfo? {
+        mainViewModel.deviceInfos.first { $0.priority == prio && $0.identifier != device.identifier }
+    }
+    
+    func savePriority() {
+        self.loading = true
+        Task {
+            defer {
+                Task { @MainActor in
+                    self.loading = false
+                }
+            }
+            do {
+                guard let newDevice = try await self.dataRepository.saveDevice(with: self.device.identifier, priority: selectedPrio) else {
+                    self.isOn = !self.isOn
+                    return
+                }
+                self.device = newDevice
+            } catch {
+                self.isOn = !self.isOn
+                print(error)
+            }
+        }
+    }
+    
+    func saveName() {
+        self.loading = true
+        Task {
+            defer {
+                Task { @MainActor in
+                    self.loading = false
+                }
+            }
+            do {
+                guard let newDevice = try await self.dataRepository.changeDevice(with: self.device.identifier, name: name) else {
+                    return
+                }
+                self.device = newDevice
+            } catch {
+                print(error)
+            }
+        }
+    }
+    
+    func saveConsumption() {
+        self.loading = true
+        Task {
+            defer {
+                Task { @MainActor in
+                    self.loading = false
+                }
+            }
+            do {
+                guard let newDevice = try await self.dataRepository.changeDevice(with: self.device.identifier, estimated_consumption: estimatedConsumption) else {
+                    return
+                }
+                self.device = newDevice
+            } catch {
+                print(error)
+            }
+        }
     }
     
     func loadLog() {

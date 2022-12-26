@@ -11,18 +11,25 @@ struct DeviceDetailView: View {
     
     @StateObject var viewModel: DeviceDetailViewModel
     
+    @State var changeName: Bool = false
+    @State var changeConsumption: Bool = false
+    
     var body: some View {
         ZStack {
-            ScrollView {
-                VStack(spacing: 24 ) {
-                    Text(viewModel.device.isOn ? "AN" : "AUS")
-                        .foregroundColor(viewModel.device.isOn ? Color.green : Color.red)
-                        .font(.title)
+            Form {
+                Section("Info") {
                     HStack {
-                        Text("Verbrauch:")
+                        Text("KW:")
                         Spacer()
                         Text(viewModel.device.consumption?.kwString ?? "")
                     }
+                    HStack {
+                        Text("Uhrzeit, Datum:")
+                        Spacer()
+                        Text(viewModel.device.formattedTime)
+                    }
+                }
+                Section("Steuerung") {
                     Toggle(isOn: $viewModel.isOn) {
                         Text("Status:")
                     }
@@ -31,8 +38,32 @@ struct DeviceDetailView: View {
                         Text("Automatik:")
                     }
                     .disabled(viewModel.loading)
-                    Divider()
-                        .padding(.bottom, 24)
+                    
+                    #if os(watchOS)
+//                    HStack {
+//                        Picker("Priorität:", selection: $viewModel.selectedPrio) {
+//                            ForEach(0...100, id: \.self) {
+//                                if let deviceWithSamePrio = viewModel.device(with: $0) {
+//                                    Text("\($0) \(deviceWithSamePrio.name)")
+//                                        .lineLimit(1)
+//                                        .tag($0)
+//                                } else {
+//                                    Text("\($0)")
+//                                        .tag($0)
+//                                }
+//                            }
+//                        }
+//                        .padding(.trailing, 20)
+//                        .disabled(viewModel.loading)
+//                        Button("Speichern") {
+//                            viewModel.savePriority()
+//                        }
+//                        .buttonStyle(.borderedProminent)
+//                        .disabled(!viewModel.prioButtonEnabled)
+//                    }
+                    #endif
+                }
+                Section {
                     if let logs = viewModel.deviceLog {
                         ForEach(logs) { log in
                             VStack {
@@ -50,7 +81,18 @@ struct DeviceDetailView: View {
                         ProgressView()
                     }
                 }
-                .padding(.horizontal, 16)
+                #if os(iOS)
+                Section {
+                    Button("Name Ändern") {
+                        changeName = true
+                    }
+                    .disabled(viewModel.loading)
+                    Button("Verbrauch Ändern") {
+                        changeConsumption = true
+                    }
+                    .disabled(viewModel.loading)
+                }
+                #endif
             }
         }
         .navigationTitle(viewModel.device.name)
@@ -58,13 +100,30 @@ struct DeviceDetailView: View {
         .onAppear {
             viewModel.loadLog()
         }
+        .alert("Name Ändern", isPresented: $changeName) {
+            TextField("Name", text: $viewModel.name)
+            Button("Abbrechen", role: .cancel, action: {})
+            Button("Speichern") {
+                viewModel.saveName()
+            }
+        }
+        .alert("Verbrauch Ändern", isPresented: $changeConsumption) {
+            #if os(iOS)
+            TextField("Verbrauch", value: $viewModel.estimatedConsumption, formatter: NumberFormatter())
+                .keyboardType(.numberPad)
+            #endif
+            Button("Abbrechen", role: .cancel, action: {})
+            Button("Speichern") {
+                viewModel.saveConsumption()
+            }
+        }
     }
 }
 
 struct DeviceDetailView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            DeviceDetailView(viewModel: DeviceDetailViewModel(device: PVDeviceInfo(identifier: "Test", isOn: true, lastChange: 1663761222, consumption: 1.1, temperature: nil, name: "Some Testdevice", forced: false),dataRepository: DataRepository.shared, mainViewModel: MainViewModel()))
+            DeviceDetailView(viewModel: DeviceDetailViewModel(device: PVDeviceInfo(identifier: "Test", isOn: true, lastChange: 1663761222, consumption: 1.1, temperature: nil, name: "Some Testdevice", forced: false, priority: 10, estimatedConsumption: 300),dataRepository: DataRepository.shared, mainViewModel: MainViewModel()))
         }
     }
 }

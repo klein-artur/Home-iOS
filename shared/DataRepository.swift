@@ -44,6 +44,8 @@ struct PVDeviceInfo: Codable {
     let temperature: Float?
     let name: String
     let forced: Bool
+    var priority: Int?
+    let estimatedConsumption: Int
 }
 
 struct PVIncome: Codable {
@@ -64,6 +66,9 @@ class DataRepository: NSObject {
     static let deviceLogEndpoint = "deviceLog.php"
     static let deviceInfosEndpoint = "deviceInfos.php"
     static let deviceSwitchEndpoint = "switchDevice.php"
+    static let devicePrioEndpoint = "changeDevicePrio.php"
+    static let devicePriosEndpoint = "changeDevicePrios.php"
+    static let deviceChangeEndpoint = "changeDevice.php"
 
     static let LAST_DATA_KEY = "LAST_DATA_KEY"
     static let LAST_HOURS_KEY = "LAST_HOURS_KEY"
@@ -200,7 +205,7 @@ class DataRepository: NSObject {
             do {
                 let result = try JSONDecoder().decode([PVDeviceInfo].self, from: data)
 
-                return result
+                return result.prioritySorted
             } catch {
                 print("Error on server side in getDeviceInfos:")
                 print(error)
@@ -282,6 +287,95 @@ class DataRepository: NSObject {
             }
         } else {
             return nil
+        }
+    }
+    
+    func saveDevice(with identifier: String, priority: Int) async throws -> PVDeviceInfo? {
+        let params = [
+            "identifier": identifier,
+            "prio": "\(priority)"
+        ]
+        if let request = getRequest(endpoint: Self.devicePrioEndpoint, method: .post, params: params) {
+            let (data, _) = try await URLSession.shared.data(for: request)
+
+            do {
+                let result = try JSONDecoder().decode(PVSwitchResult.self, from: data)
+                
+                if result.result {
+                    return try await getDeviceInfo(identifier: identifier)
+                } else {
+                    print(result.output)
+                    return nil
+                }
+            } catch {
+                print("Error on server side in getDeviceInfo:")
+                print(error)
+                return nil
+            }
+        } else {
+            return nil
+        }
+    }
+    
+    private func changeDevice(with identifier: String, field: String, value: String) async throws -> PVDeviceInfo? {
+        let params = [
+            "identifier": identifier,
+            field: value
+        ]
+        if let request = getRequest(endpoint: Self.deviceChangeEndpoint, method: .post, params: params) {
+             let (data, _) = try await URLSession.shared.data(for: request)
+
+            do {
+                let result = try JSONDecoder().decode(PVSwitchResult.self, from: data)
+                
+                if result.result {
+                    return try await getDeviceInfo(identifier: identifier)
+                } else {
+                    print(result.output)
+                    return nil
+                }
+            } catch {
+                print("Error on server side in getDeviceInfo:")
+                print(error)
+                return nil
+            }
+        } else {
+            return nil
+        }
+    }
+    
+    func changeDevice(with identifier: String, name: String) async throws -> PVDeviceInfo? {
+        try await self.changeDevice(with: identifier, field: "name", value: name)
+    }
+    
+    func changeDevice(with identifier: String, estimated_consumption: Int) async throws -> PVDeviceInfo? {
+        try await self.changeDevice(with: identifier, field: "estimated_consumption", value: "\(estimated_consumption)")
+    }
+    
+    func saveDevicePrios(for devices: [PVDeviceInfo]) async throws -> [PVDeviceInfo] {
+        let params = devices.reduce([String: String]()) { partialResult, device in
+            var partialResult = partialResult
+            partialResult[device.identifier] = "\(device.priority!)"
+            return partialResult
+        }
+        if let request = getRequest(endpoint: Self.devicePriosEndpoint, method: .post, params: params) {
+            let (data, _) = try await URLSession.shared.data(for: request)
+
+            do {
+                let result = try JSONDecoder().decode(PVSwitchResult.self, from: data)
+                
+                if result.result {
+                    return try await getDeviceInfos(type: "relay")
+                } else {
+                    return []
+                }
+            } catch {
+                print("Error on server side in getDeviceInfo:")
+                print(error)
+                return []
+            }
+        } else {
+            return []
         }
     }
     
