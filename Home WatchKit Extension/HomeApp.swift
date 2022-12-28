@@ -9,6 +9,9 @@ import SwiftUI
 
 @main
 struct HomeApp: App {
+
+    @WKExtensionDelegateAdaptor private var extensionDelegate: ExtensionDelegate
+
     @SceneBuilder var body: some Scene {
         WindowGroup {
             NavigationView {

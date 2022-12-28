@@ -7,20 +7,39 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F47CB8D3295CB51200A47BA8 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47CB8D2295CB51200A47BA8 /* Constants.swift */; };
+		F47CB8D4295CB51200A47BA8 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47CB8D2295CB51200A47BA8 /* Constants.swift */; };
 		FE26FE4128D9FC8700851216 /* HomeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE26FE4028D9FC8700851216 /* HomeApp.swift */; };
-		FE26FE4328D9FC8700851216 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE26FE4228D9FC8700851216 /* ContentView.swift */; };
 		FE26FE4528D9FC8800851216 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FE26FE4428D9FC8800851216 /* Assets.xcassets */; };
 		FE26FE4828D9FC8800851216 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FE26FE4728D9FC8800851216 /* Preview Assets.xcassets */; };
 		FE26FE4C28D9FC8800851216 /* Home WatchKit App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = FE26FE4B28D9FC8800851216 /* Home WatchKit App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		FE26FE5128D9FC8800851216 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FE26FE5028D9FC8800851216 /* Assets.xcassets */; };
 		FE26FE5728D9FC8900851216 /* Home WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = FE26FE5628D9FC8900851216 /* Home WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		FE26FE5C28D9FC8900851216 /* HomeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE26FE5B28D9FC8900851216 /* HomeApp.swift */; };
-		FE26FE5E28D9FC8900851216 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE26FE5D28D9FC8900851216 /* ContentView.swift */; };
 		FE26FE6028D9FC8900851216 /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE26FE5F28D9FC8900851216 /* NotificationController.swift */; };
 		FE26FE6228D9FC8900851216 /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE26FE6128D9FC8900851216 /* NotificationView.swift */; };
-		FE26FE6428D9FC8900851216 /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE26FE6328D9FC8900851216 /* ComplicationController.swift */; };
 		FE26FE6628D9FC8900851216 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FE26FE6528D9FC8900851216 /* Assets.xcassets */; };
 		FE26FE6928D9FC8900851216 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FE26FE6828D9FC8900851216 /* Preview Assets.xcassets */; };
+		FE26FE7C28DA328B00851216 /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE26FE7B28DA328B00851216 /* ExtensionDelegate.swift */; };
+		FE26FE8028DA332600851216 /* Color+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE26FE7F28DA332600851216 /* Color+Extensions.swift */; };
+		FE26FE8128DA332D00851216 /* Color+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE26FE7F28DA332600851216 /* Color+Extensions.swift */; };
+		FE26FE8928DA337900851216 /* DataRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE26FE8328DA337900851216 /* DataRepository.swift */; };
+		FE26FE8A28DA337900851216 /* DataRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE26FE8328DA337900851216 /* DataRepository.swift */; };
+		FE26FE8B28DA337900851216 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE26FE8428DA337900851216 /* MainViewModel.swift */; };
+		FE26FE8C28DA337900851216 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE26FE8428DA337900851216 /* MainViewModel.swift */; };
+		FE26FE8D28DA337900851216 /* DoOnDataLoaded.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE26FE8528DA337900851216 /* DoOnDataLoaded.swift */; };
+		FE26FE8E28DA337900851216 /* DoOnDataLoaded.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE26FE8528DA337900851216 /* DoOnDataLoaded.swift */; };
+		FE26FE9428DA33B500851216 /* DoOnDataLoadedImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE26FE9128DA33B500851216 /* DoOnDataLoadedImpl.swift */; };
+		FE26FE9828DA33EA00851216 /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE26FE9728DA33EA00851216 /* ComplicationController.swift */; };
+		FE26FE9A28DA341C00851216 /* DoOnDataLoadedImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE26FE9928DA341C00851216 /* DoOnDataLoadedImpl.swift */; };
+		FE26FE9D28DA346500851216 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE26FE9B28DA346500851216 /* ContentView.swift */; };
+		FE26FEA128DA349000851216 /* ConsumptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE26FE9E28DA349000851216 /* ConsumptionCell.swift */; };
+		FE26FEA228DA349000851216 /* ConsumptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE26FE9E28DA349000851216 /* ConsumptionCell.swift */; };
+		FE26FEA328DA349000851216 /* BatteryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE26FE9F28DA349000851216 /* BatteryCell.swift */; };
+		FE26FEA428DA349000851216 /* BatteryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE26FE9F28DA349000851216 /* BatteryCell.swift */; };
+		FE26FEA528DA349000851216 /* PvCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE26FEA028DA349000851216 /* PvCell.swift */; };
+		FE26FEA628DA349000851216 /* PvCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE26FEA028DA349000851216 /* PvCell.swift */; };
+		FEC6FC9D28DB17BE003EAAEA /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE26FE9B28DA346500851216 /* ContentView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,23 +85,35 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		F47CB8D2295CB51200A47BA8 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		FE26FE3D28D9FC8700851216 /* Home.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Home.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE26FE4028D9FC8700851216 /* HomeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeApp.swift; sourceTree = "<group>"; };
-		FE26FE4228D9FC8700851216 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		FE26FE4428D9FC8800851216 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FE26FE4728D9FC8800851216 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		FE26FE4B28D9FC8800851216 /* Home WatchKit App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Home WatchKit App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE26FE5028D9FC8800851216 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FE26FE5628D9FC8900851216 /* Home WatchKit Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Home WatchKit Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE26FE5B28D9FC8900851216 /* HomeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeApp.swift; sourceTree = "<group>"; };
-		FE26FE5D28D9FC8900851216 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		FE26FE5F28D9FC8900851216 /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
 		FE26FE6128D9FC8900851216 /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
-		FE26FE6328D9FC8900851216 /* ComplicationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicationController.swift; sourceTree = "<group>"; };
 		FE26FE6528D9FC8900851216 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FE26FE6828D9FC8900851216 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		FE26FE6A28D9FC8900851216 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FE26FE6B28D9FC8900851216 /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
+		FE26FE7928DA321E00851216 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		FE26FE7A28DA324B00851216 /* Home-WatchKit-App-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Home-WatchKit-App-Info.plist"; sourceTree = SOURCE_ROOT; };
+		FE26FE7B28DA328B00851216 /* ExtensionDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
+		FE26FE7F28DA332600851216 /* Color+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Color+Extensions.swift"; sourceTree = "<group>"; };
+		FE26FE8328DA337900851216 /* DataRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataRepository.swift; sourceTree = "<group>"; };
+		FE26FE8428DA337900851216 /* MainViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
+		FE26FE8528DA337900851216 /* DoOnDataLoaded.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DoOnDataLoaded.swift; sourceTree = "<group>"; };
+		FE26FE9128DA33B500851216 /* DoOnDataLoadedImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DoOnDataLoadedImpl.swift; sourceTree = "<group>"; };
+		FE26FE9728DA33EA00851216 /* ComplicationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComplicationController.swift; sourceTree = "<group>"; };
+		FE26FE9928DA341C00851216 /* DoOnDataLoadedImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DoOnDataLoadedImpl.swift; sourceTree = "<group>"; };
+		FE26FE9B28DA346500851216 /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		FE26FE9E28DA349000851216 /* ConsumptionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConsumptionCell.swift; sourceTree = "<group>"; };
+		FE26FE9F28DA349000851216 /* BatteryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BatteryCell.swift; sourceTree = "<group>"; };
+		FE26FEA028DA349000851216 /* PvCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PvCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +137,7 @@
 		FE26FE3428D9FC8700851216 = {
 			isa = PBXGroup;
 			children = (
+				FE26FE7E28DA32F900851216 /* shared */,
 				FE26FE3F28D9FC8700851216 /* Home */,
 				FE26FE4F28D9FC8800851216 /* Home WatchKit App */,
 				FE26FE5A28D9FC8900851216 /* Home WatchKit Extension */,
@@ -126,8 +158,9 @@
 		FE26FE3F28D9FC8700851216 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				FE26FE7928DA321E00851216 /* Info.plist */,
 				FE26FE4028D9FC8700851216 /* HomeApp.swift */,
-				FE26FE4228D9FC8700851216 /* ContentView.swift */,
+				FE26FE9928DA341C00851216 /* DoOnDataLoadedImpl.swift */,
 				FE26FE4428D9FC8800851216 /* Assets.xcassets */,
 				FE26FE4628D9FC8800851216 /* Preview Content */,
 			);
@@ -145,6 +178,7 @@
 		FE26FE4F28D9FC8800851216 /* Home WatchKit App */ = {
 			isa = PBXGroup;
 			children = (
+				FE26FE7A28DA324B00851216 /* Home-WatchKit-App-Info.plist */,
 				FE26FE5028D9FC8800851216 /* Assets.xcassets */,
 			);
 			path = "Home WatchKit App";
@@ -153,11 +187,12 @@
 		FE26FE5A28D9FC8900851216 /* Home WatchKit Extension */ = {
 			isa = PBXGroup;
 			children = (
+				FE26FE9728DA33EA00851216 /* ComplicationController.swift */,
+				FE26FE9128DA33B500851216 /* DoOnDataLoadedImpl.swift */,
+				FE26FE7B28DA328B00851216 /* ExtensionDelegate.swift */,
 				FE26FE5B28D9FC8900851216 /* HomeApp.swift */,
-				FE26FE5D28D9FC8900851216 /* ContentView.swift */,
 				FE26FE5F28D9FC8900851216 /* NotificationController.swift */,
 				FE26FE6128D9FC8900851216 /* NotificationView.swift */,
-				FE26FE6328D9FC8900851216 /* ComplicationController.swift */,
 				FE26FE6528D9FC8900851216 /* Assets.xcassets */,
 				FE26FE6A28D9FC8900851216 /* Info.plist */,
 				FE26FE6B28D9FC8900851216 /* PushNotificationPayload.apns */,
@@ -172,6 +207,30 @@
 				FE26FE6828D9FC8900851216 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		FE26FE7D28DA32DD00851216 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				FE26FE7F28DA332600851216 /* Color+Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		FE26FE7E28DA32F900851216 /* shared */ = {
+			isa = PBXGroup;
+			children = (
+				F47CB8D2295CB51200A47BA8 /* Constants.swift */,
+				FE26FE9B28DA346500851216 /* ContentView.swift */,
+				FE26FE8328DA337900851216 /* DataRepository.swift */,
+				FE26FE9F28DA349000851216 /* BatteryCell.swift */,
+				FE26FE9E28DA349000851216 /* ConsumptionCell.swift */,
+				FE26FEA028DA349000851216 /* PvCell.swift */,
+				FE26FE8528DA337900851216 /* DoOnDataLoaded.swift */,
+				FE26FE8428DA337900851216 /* MainViewModel.swift */,
+				FE26FE7D28DA32DD00851216 /* Extensions */,
+			);
+			path = shared;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -305,8 +364,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FE26FE4328D9FC8700851216 /* ContentView.swift in Sources */,
+				FE26FE9A28DA341C00851216 /* DoOnDataLoadedImpl.swift in Sources */,
+				F47CB8D3295CB51200A47BA8 /* Constants.swift in Sources */,
+				FEC6FC9D28DB17BE003EAAEA /* ContentView.swift in Sources */,
+				FE26FE8928DA337900851216 /* DataRepository.swift in Sources */,
+				FE26FEA128DA349000851216 /* ConsumptionCell.swift in Sources */,
+				FE26FEA328DA349000851216 /* BatteryCell.swift in Sources */,
 				FE26FE4128D9FC8700851216 /* HomeApp.swift in Sources */,
+				FE26FEA528DA349000851216 /* PvCell.swift in Sources */,
+				FE26FE8128DA332D00851216 /* Color+Extensions.swift in Sources */,
+				FE26FE8D28DA337900851216 /* DoOnDataLoaded.swift in Sources */,
+				FE26FE8B28DA337900851216 /* MainViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -314,11 +382,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FE26FE8E28DA337900851216 /* DoOnDataLoaded.swift in Sources */,
+				FE26FEA428DA349000851216 /* BatteryCell.swift in Sources */,
 				FE26FE6028D9FC8900851216 /* NotificationController.swift in Sources */,
-				FE26FE5E28D9FC8900851216 /* ContentView.swift in Sources */,
-				FE26FE6428D9FC8900851216 /* ComplicationController.swift in Sources */,
+				FE26FE9D28DA346500851216 /* ContentView.swift in Sources */,
+				FE26FE7C28DA328B00851216 /* ExtensionDelegate.swift in Sources */,
+				F47CB8D4295CB51200A47BA8 /* Constants.swift in Sources */,
+				FE26FE9428DA33B500851216 /* DoOnDataLoadedImpl.swift in Sources */,
+				FE26FE9828DA33EA00851216 /* ComplicationController.swift in Sources */,
+				FE26FE8028DA332600851216 /* Color+Extensions.swift in Sources */,
+				FE26FE8C28DA337900851216 /* MainViewModel.swift in Sources */,
 				FE26FE5C28D9FC8900851216 /* HomeApp.swift in Sources */,
+				FE26FE8A28DA337900851216 /* DataRepository.swift in Sources */,
 				FE26FE6228D9FC8900851216 /* NotificationView.swift in Sources */,
+				FE26FEA628DA349000851216 /* PvCell.swift in Sources */,
+				FE26FEA228DA349000851216 /* ConsumptionCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -459,7 +537,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Home WatchKit Extension/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Home WatchKit Extension";
-				INFOPLIST_KEY_CLKComplicationPrincipalClass = "$(PRODUCT_MODULE_NAME).ComplicationController";
+				INFOPLIST_KEY_CLKComplicationPrincipalClass = Home_WatchKit_Extension.ComplicationController;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -475,7 +553,7 @@
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 8.5;
+				WATCHOS_DEPLOYMENT_TARGET = 9.0;
 			};
 			name = Debug;
 		};
@@ -491,7 +569,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Home WatchKit Extension/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Home WatchKit Extension";
-				INFOPLIST_KEY_CLKComplicationPrincipalClass = "$(PRODUCT_MODULE_NAME).ComplicationController";
+				INFOPLIST_KEY_CLKComplicationPrincipalClass = Home_WatchKit_Extension.ComplicationController;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -508,7 +586,7 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				VALIDATE_PRODUCT = YES;
-				WATCHOS_DEPLOYMENT_TARGET = 8.5;
+				WATCHOS_DEPLOYMENT_TARGET = 9.0;
 			};
 			name = Release;
 		};
@@ -523,7 +601,8 @@
 				DEVELOPMENT_TEAM = 3SXRZ8J7UJ;
 				GENERATE_INFOPLIST_FILE = YES;
 				IBSC_MODULE = Home_WatchKit_Extension;
-				INFOPLIST_KEY_CFBundleDisplayName = "Home WatchKit App";
+				INFOPLIST_FILE = "Home-WatchKit-App-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = Home;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = de.hellmann.Home;
 				MARKETING_VERSION = 1.0;
@@ -534,7 +613,7 @@
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 8.5;
+				WATCHOS_DEPLOYMENT_TARGET = 9.0;
 			};
 			name = Debug;
 		};
@@ -549,7 +628,8 @@
 				DEVELOPMENT_TEAM = 3SXRZ8J7UJ;
 				GENERATE_INFOPLIST_FILE = YES;
 				IBSC_MODULE = Home_WatchKit_Extension;
-				INFOPLIST_KEY_CFBundleDisplayName = "Home WatchKit App";
+				INFOPLIST_FILE = "Home-WatchKit-App-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = Home;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = de.hellmann.Home;
 				MARKETING_VERSION = 1.0;
@@ -561,7 +641,7 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				VALIDATE_PRODUCT = YES;
-				WATCHOS_DEPLOYMENT_TARGET = 8.5;
+				WATCHOS_DEPLOYMENT_TARGET = 9.0;
 			};
 			name = Release;
 		};
@@ -576,12 +656,13 @@
 				DEVELOPMENT_TEAM = 3SXRZ8J7UJ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Home/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -607,12 +688,13 @@
 				DEVELOPMENT_TEAM = 3SXRZ8J7UJ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Home/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

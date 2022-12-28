@@ -1,8 +1,8 @@
 //
 //  ComplicationController.swift
-//  Home WatchKit Extension
+//  MyPV WatchKit Extension
 //
-//  Created by Artur Hellmann on 20.09.22.
+//  Created by Artur Hellmann on 15.08.22.
 //
 
 import ClockKit
@@ -14,8 +14,7 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
 
     func getComplicationDescriptors(handler: @escaping ([CLKComplicationDescriptor]) -> Void) {
         let descriptors = [
-            CLKComplicationDescriptor(identifier: "complication", displayName: "Home", supportedFamilies: CLKComplicationFamily.allCases)
-            // Multiple complication support can be added here with more descriptors
+            CLKComplicationDescriptor(identifier: "batteryState", displayName: "Batterieladung", supportedFamilies: [.graphicCorner])
         ]
         
         // Call the handler with the currently supported complication descriptors
@@ -41,8 +40,18 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
     // MARK: - Timeline Population
     
     func getCurrentTimelineEntry(for complication: CLKComplication, withHandler handler: @escaping (CLKComplicationTimelineEntry?) -> Void) {
-        // Call the handler with the current timeline entry
-        handler(nil)
+
+        guard let currentData = DataRepository.shared.lastStatus else {
+            handler(nil)
+            return
+        }
+
+        let timelineEntry = CLKComplicationTimelineEntry(
+            date: .now,
+            complicationTemplate: complicationTemplate(for: currentData)
+        )
+
+        handler(timelineEntry)
     }
     
     func getTimelineEntries(for complication: CLKComplication, after date: Date, limit: Int, withHandler handler: @escaping ([CLKComplicationTimelineEntry]?) -> Void) {
@@ -54,6 +63,40 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
     
     func getLocalizableSampleTemplate(for complication: CLKComplication, withHandler handler: @escaping (CLKComplicationTemplate?) -> Void) {
         // This method will be called once per supported complication, and the results will be cached
-        handler(nil)
+        handler(
+            complicationTemplate(for: nil)
+        )
+    }
+
+    private func complicationTemplate(for pvState: PVState?) -> CLKComplicationTemplate {
+        let pvStateTrailingText: CLKSimpleTextProvider?
+        let pvStateLeadingText: CLKSimpleTextProvider?
+        if let pvState = pvState {
+            if pvState.batteryCharge > 0 {
+                pvStateTrailingText = CLKSimpleTextProvider(text: "→")
+                pvStateLeadingText = CLKSimpleTextProvider(text: "•")
+            } else if pvState.batteryCharge < 0 {
+                pvStateTrailingText = CLKSimpleTextProvider(text: "•")
+                pvStateLeadingText = CLKSimpleTextProvider(text: "←")
+            } else {
+                pvStateTrailingText = CLKSimpleTextProvider(text: "•")
+                pvStateLeadingText = CLKSimpleTextProvider(text: "•")
+            }
+        } else {
+            pvStateTrailingText = CLKSimpleTextProvider(text: "→")
+            pvStateLeadingText = CLKSimpleTextProvider(text: "•")
+        }
+
+        return CLKComplicationTemplateGraphicCornerGaugeText(
+            gaugeProvider: CLKSimpleGaugeProvider(
+                        style: .fill,
+                        gaugeColors: [.green, .yellow, .orange, .red].reversed(),
+                        gaugeColorLocations: [0, 0.25, 0.5, 0.75],
+                        fillFraction: Float(pvState?.batteryState ?? 50) / 100.0
+                    ),
+            leadingTextProvider: pvStateLeadingText,
+            trailingTextProvider: pvStateTrailingText,
+            outerTextProvider: CLKSimpleTextProvider(text: pvState?.batteryState.pcString ?? "50 %")
+        )
     }
 }
