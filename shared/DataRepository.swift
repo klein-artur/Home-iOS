@@ -46,6 +46,8 @@ struct PVDeviceInfo: Codable {
     let forced: Bool
     var priority: Int?
     let estimatedConsumption: Int
+    let minOnTime: Int
+    let minOffTime: Int
 }
 
 struct PVIncome: Codable {
@@ -317,11 +319,13 @@ class DataRepository: NSObject {
         }
     }
     
-    private func changeDevice(with identifier: String, field: String, value: String) async throws -> PVDeviceInfo? {
-        let params = [
-            "identifier": identifier,
-            field: value
+    private func changeDevice(with identifier: String, fields: [String: String]) async throws -> PVDeviceInfo? {
+        var params = [
+            "identifier": identifier
         ]
+        
+        fields.forEach { params[$0] = $1 }
+        
         if let request = getRequest(endpoint: Self.deviceChangeEndpoint, method: .post, params: params) {
              let (data, _) = try await URLSession.shared.data(for: request)
 
@@ -345,11 +349,21 @@ class DataRepository: NSObject {
     }
     
     func changeDevice(with identifier: String, name: String) async throws -> PVDeviceInfo? {
-        try await self.changeDevice(with: identifier, field: "name", value: name)
+        try await self.changeDevice(with: identifier, fields: ["name": name])
     }
     
     func changeDevice(with identifier: String, estimated_consumption: Int) async throws -> PVDeviceInfo? {
-        try await self.changeDevice(with: identifier, field: "estimated_consumption", value: "\(estimated_consumption)")
+        try await self.changeDevice(with: identifier, fields: ["estimated_consumption": "\(estimated_consumption)"])
+    }
+    
+    func changeDevice(with identifier: String, minOnTime: Int, minOffTime: Int) async throws -> PVDeviceInfo? {
+        try await self.changeDevice(
+            with: identifier,
+            fields: [
+                "min_on_time": "\(minOnTime)",
+                "min_off_time": "\(minOffTime)"
+            ]
+        )
     }
     
     func saveDevicePrios(for devices: [PVDeviceInfo]) async throws -> [PVDeviceInfo] {

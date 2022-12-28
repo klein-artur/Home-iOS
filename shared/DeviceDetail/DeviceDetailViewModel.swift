@@ -100,6 +100,10 @@ class DeviceDetailViewModel: ObservableObject {
     
     @Published var estimatedConsumption: Int
     
+    @Published var minOnTime: Int
+    
+    @Published var minOffTime: Int
+    
     private func updatePrioButtonEnabled() {
         prioButtonEnabled = selectedPrio != device.priority && !loading && device(with: selectedPrio) == nil
     }
@@ -117,6 +121,8 @@ class DeviceDetailViewModel: ObservableObject {
         self.mainViewModel = mainViewModel
         self.selectedPrio = device.priority!
         self.estimatedConsumption = device.estimatedConsumption
+        self.minOnTime = device.minOnTime
+        self.minOffTime = device.minOffTime
     }
     
     func device(with prio: Int) -> PVDeviceInfo? {
@@ -173,6 +179,25 @@ class DeviceDetailViewModel: ObservableObject {
             }
             do {
                 guard let newDevice = try await self.dataRepository.changeDevice(with: self.device.identifier, estimated_consumption: estimatedConsumption) else {
+                    return
+                }
+                self.device = newDevice
+            } catch {
+                print(error)
+            }
+        }
+    }
+    
+    func saveMinTimes() {
+        self.loading = true
+        Task {
+            defer {
+                Task { @MainActor in
+                    self.loading = false
+                }
+            }
+            do {
+                guard let newDevice = try await self.dataRepository.changeDevice(with: self.device.identifier, minOnTime: minOnTime, minOffTime: minOffTime) else {
                     return
                 }
                 self.device = newDevice

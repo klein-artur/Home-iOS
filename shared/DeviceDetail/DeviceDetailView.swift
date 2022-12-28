@@ -13,6 +13,7 @@ struct DeviceDetailView: View {
     
     @State var changeName: Bool = false
     @State var changeConsumption: Bool = false
+    @State var changeMinTimes: Bool = false
     
     var body: some View {
         ZStack {
@@ -63,32 +64,43 @@ struct DeviceDetailView: View {
 //                    }
                     #endif
                 }
-                Section {
-                    if let logs = viewModel.deviceLog {
-                        ForEach(logs) { log in
-                            VStack {
-                                HStack {
-                                    Text(log.formattedTime)
-                                        .font(.headline)
-                                    Spacer()
-                                    Text(log.isOn ? "AN" : "AUS")
-                                        .foregroundColor(log.isOn ? Color.green : Color.red)
-                                }
-                                Divider()
-                            }
-                        }
-                    } else {
-                        ProgressView()
+//                Section {
+//                    if let logs = viewModel.deviceLog {
+//                        ForEach(logs) { log in
+//                            VStack {
+//                                HStack {
+//                                    Text(log.formattedTime)
+//                                        .font(.headline)
+//                                    Spacer()
+//                                    Text(log.isOn ? "AN" : "AUS")
+//                                        .foregroundColor(log.isOn ? Color.green : Color.red)
+//                                }
+//                                Divider()
+//                            }
+//                        }
+//                    } else {
+//                        ProgressView()
+//                    }
+//                }
+                Section("System") {
+                    HStack {
+                        Text("ID:")
+                        Spacer()
+                        Text(viewModel.device.identifier)
                     }
                 }
                 #if os(iOS)
-                Section {
+                Section("Steuerung") {
                     Button("Name Ändern") {
                         changeName = true
                     }
                     .disabled(viewModel.loading)
                     Button("Verbrauch Ändern") {
                         changeConsumption = true
+                    }
+                    .disabled(viewModel.loading)
+                    Button("Minimal Zeiten Ändern") {
+                        changeMinTimes = true
                     }
                     .disabled(viewModel.loading)
                 }
@@ -117,13 +129,25 @@ struct DeviceDetailView: View {
                 viewModel.saveConsumption()
             }
         }
+        .alert("Verbrauch Ändern", isPresented: $changeMinTimes) {
+            #if os(iOS)
+            TextField("Minimal On Time", value: $viewModel.minOnTime, formatter: NumberFormatter())
+                .keyboardType(.numberPad)
+            TextField("Minimal Off Time", value: $viewModel.minOffTime, formatter: NumberFormatter())
+                .keyboardType(.numberPad)
+            #endif
+            Button("Abbrechen", role: .cancel, action: {})
+            Button("Speichern") {
+                viewModel.saveMinTimes()
+            }
+        }
     }
 }
 
 struct DeviceDetailView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            DeviceDetailView(viewModel: DeviceDetailViewModel(device: PVDeviceInfo(identifier: "Test", isOn: true, lastChange: 1663761222, consumption: 1.1, temperature: nil, name: "Some Testdevice", forced: false, priority: 10, estimatedConsumption: 300),dataRepository: DataRepository.shared, mainViewModel: MainViewModel()))
+            DeviceDetailView(viewModel: DeviceDetailViewModel(device: PVDeviceInfo(identifier: "Test", isOn: true, lastChange: 1663761222, consumption: 1.1, temperature: nil, name: "Some Testdevice", forced: false, priority: 10, estimatedConsumption: 300, minOnTime: 1000, minOffTime: 1000),dataRepository: DataRepository.shared, mainViewModel: MainViewModel()))
         }
     }
 }

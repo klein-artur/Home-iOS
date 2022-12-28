@@ -65,12 +65,12 @@ struct EditDevicePrioView_Previews: PreviewProvider {
             editDevicePrioViewModel: EditDevicePrioViewModel(
                 repo: .shared,
                 devices: [
-                    PVDeviceInfo(identifier: "Test", isOn: true, lastChange: 1663761222, consumption: 1.1, temperature: nil, name: "Some Testdevice", forced: false, priority: 10, estimatedConsumption: 300),
-                    PVDeviceInfo(identifier: "Test", isOn: true, lastChange: 1663761222, consumption: 1.1, temperature: nil, name: "Some Testdevice", forced: false, priority: 33, estimatedConsumption: 300),
-                    PVDeviceInfo(identifier: "Test", isOn: true, lastChange: 1663761222, consumption: 1.1, temperature: nil, name: "Some Testdevice", forced: false, priority: 34, estimatedConsumption: 300),
-                    PVDeviceInfo(identifier: "Test", isOn: true, lastChange: 1663761222, consumption: 1.1, temperature: nil, name: "Some Testdevice", forced: false, priority: 66, estimatedConsumption: 300),
-                    PVDeviceInfo(identifier: "Test", isOn: true, lastChange: 1663761222, consumption: 1.1, temperature: nil, name: "Some Testdevice", forced: false, priority: 67, estimatedConsumption: 300),
-                    PVDeviceInfo(identifier: "Test", isOn: true, lastChange: 1663761222, consumption: 1.1, temperature: nil, name: "Some Testdevice", forced: false, priority: 99, estimatedConsumption: 300)
+                    PVDeviceInfo(identifier: "Test", isOn: true, lastChange: 1663761222, consumption: 1.1, temperature: nil, name: "Some Testdevice", forced: false, priority: 10, estimatedConsumption: 300, minOnTime: 1000, minOffTime: 1000),
+                    PVDeviceInfo(identifier: "Test", isOn: true, lastChange: 1663761222, consumption: 1.1, temperature: nil, name: "Some Testdevice", forced: false, priority: 33, estimatedConsumption: 300, minOnTime: 1000, minOffTime: 1000),
+                    PVDeviceInfo(identifier: "Test", isOn: true, lastChange: 1663761222, consumption: 1.1, temperature: nil, name: "Some Testdevice", forced: false, priority: 34, estimatedConsumption: 300, minOnTime: 1000, minOffTime: 1000),
+                    PVDeviceInfo(identifier: "Test", isOn: true, lastChange: 1663761222, consumption: 1.1, temperature: nil, name: "Some Testdevice", forced: false, priority: 66, estimatedConsumption: 300, minOnTime: 1000, minOffTime: 1000),
+                    PVDeviceInfo(identifier: "Test", isOn: true, lastChange: 1663761222, consumption: 1.1, temperature: nil, name: "Some Testdevice", forced: false, priority: 67, estimatedConsumption: 300, minOnTime: 1000, minOffTime: 1000),
+                    PVDeviceInfo(identifier: "Test", isOn: true, lastChange: 1663761222, consumption: 1.1, temperature: nil, name: "Some Testdevice", forced: false, priority: 99, estimatedConsumption: 300, minOnTime: 1000, minOffTime: 1000)
                 ]
             )
         )
