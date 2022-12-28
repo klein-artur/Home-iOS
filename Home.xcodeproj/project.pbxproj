@@ -7,14 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		F47CB8D3295CB51200A47BA8 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47CB8D2295CB51200A47BA8 /* Constants.swift */; };
-		F47CB8D4295CB51200A47BA8 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47CB8D2295CB51200A47BA8 /* Constants.swift */; };
 		F42A0BBC2906AD490030373A /* HasTimestamp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42A0BBB2906AD490030373A /* HasTimestamp.swift */; };
 		F42A0BBD2906AD490030373A /* HasTimestamp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42A0BBB2906AD490030373A /* HasTimestamp.swift */; };
 		F42A0BBF2906B5C10030373A /* DeviceDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42A0BBE2906B5C10030373A /* DeviceDetailView.swift */; };
 		F42A0BC02906B5C10030373A /* DeviceDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42A0BBE2906B5C10030373A /* DeviceDetailView.swift */; };
 		F42A0BC32906B6140030373A /* DeviceDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42A0BC22906B6140030373A /* DeviceDetailViewModel.swift */; };
 		F42A0BC42906B6140030373A /* DeviceDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42A0BC22906B6140030373A /* DeviceDetailViewModel.swift */; };
+		F47CB8D3295CB51200A47BA8 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47CB8D2295CB51200A47BA8 /* Constants.swift */; };
+		F47CB8D4295CB51200A47BA8 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47CB8D2295CB51200A47BA8 /* Constants.swift */; };
 		FE26FE4128D9FC8700851216 /* HomeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE26FE4028D9FC8700851216 /* HomeApp.swift */; };
 		FE26FE4528D9FC8800851216 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FE26FE4428D9FC8800851216 /* Assets.xcassets */; };
 		FE26FE4828D9FC8800851216 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FE26FE4728D9FC8800851216 /* Preview Assets.xcassets */; };
@@ -97,10 +97,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		F47CB8D2295CB51200A47BA8 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		F42A0BBB2906AD490030373A /* HasTimestamp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HasTimestamp.swift; sourceTree = "<group>"; };
 		F42A0BBE2906B5C10030373A /* DeviceDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceDetailView.swift; sourceTree = "<group>"; };
 		F42A0BC22906B6140030373A /* DeviceDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceDetailViewModel.swift; sourceTree = "<group>"; };
+		F47CB8D2295CB51200A47BA8 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		FE26FE3D28D9FC8700851216 /* Home.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Home.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE26FE4028D9FC8700851216 /* HomeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeApp.swift; sourceTree = "<group>"; };
 		FE26FE4428D9FC8800851216 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -574,7 +574,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_ASSET_PATHS = "\"Home WatchKit Extension/Preview Content\"";
 				DEVELOPMENT_TEAM = 3SXRZ8J7UJ;
 				ENABLE_PREVIEWS = YES;
@@ -606,7 +606,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_ASSET_PATHS = "\"Home WatchKit Extension/Preview Content\"";
 				DEVELOPMENT_TEAM = 3SXRZ8J7UJ;
 				ENABLE_PREVIEWS = YES;
@@ -641,7 +641,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = 3SXRZ8J7UJ;
 				GENERATE_INFOPLIST_FILE = YES;
 				IBSC_MODULE = Home_WatchKit_Extension;
@@ -668,7 +668,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = 3SXRZ8J7UJ;
 				GENERATE_INFOPLIST_FILE = YES;
 				IBSC_MODULE = Home_WatchKit_Extension;
